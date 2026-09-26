@@ -1,26 +1,179 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Palette sampled from the polygon-brain logo */
+  --paper: #f8f6fb;
+  --mist: #eee9f5;
+  --lilac: #c9b8dd;
+  --gold: #d9b53c;
+  --teal: #4890a8;
+  --violet: #6a3f8e;
+  --indigo: #1f1450;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-mist: var(--mist);
+  --color-lilac: var(--lilac);
+  --color-gold: var(--gold);
+  --color-teal: var(--teal);
+  --color-violet: var(--violet);
+  --color-indigo: var(--indigo);
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-script: var(--font-allura), cursive;
+  --font-sans: var(--font-jost), system-ui, sans-serif;
+  /* Very narrow phones (e.g. 213px folded screens) get their own tier below this */
+  --breakpoint-xs: 22.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Native smooth anchors only as a fallback when Lenis is not running */
+html:not(.lenis) {
+  scroll-behavior: smooth;
+}
+
+/* Hide the system pointer only where the custom cursor is active */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+::selection {
+  background: var(--lilac);
+  color: var(--paper);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--indigo);
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+.marquee-reverse {
+  animation-direction: reverse;
+}
+.marquee-wrap:hover .marquee {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Scroll reveal, toggled by <Reveal> */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hairlines that draw outwards when their section reveals */
+.reveal .draw {
+  transform: scaleX(0);
+  transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
+}
+.reveal.is-visible .draw {
+  transform: scaleX(1);
+}
+
+/* Section titles settle from wide letter-spacing into place */
+.track-in {
+  transition:
+    letter-spacing 1.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 1.2s ease;
+}
+.reveal:not(.is-visible) .track-in {
+  letter-spacing: 0.35em;
+  opacity: 0;
+}
+
+/* Slow drift for the hero props */
+.float {
+  animation: float 7s ease-in-out var(--d, 0ms) infinite;
+}
+@keyframes float {
+  50% {
+    translate: 0 -1.2cqw;
+  }
+}
+
+/* Page-load entrance for the hero; stagger with style={{ "--d": "200ms" }} */
+.rise {
+  opacity: 0;
+  animation: rise 1s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms) forwards;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.spin-slow {
+  animation: spin 24s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Soft sunlight through window blinds, as in the reference photo */
+.window-light {
+  background: repeating-linear-gradient(
+    118deg,
+    transparent 0 70px,
+    rgba(255, 255, 255, 0.6) 70px 120px
+  );
+  filter: blur(18px);
+  mask-image: linear-gradient(to left, black 20%, transparent 85%);
+}
+
+:focus-visible {
+  outline: 2px solid var(--lilac);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .rise {
+    opacity: 1;
+    animation: none;
+  }
+  .spin-slow,
+  .float {
+    animation: none;
+  }
+  .reveal .draw {
+    transform: none;
+    transition: none;
+  }
+  .track-in {
+    transition: none;
+  }
 }
