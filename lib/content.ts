@@ -214,7 +214,7 @@ export const journey = [
   {
     year: "2022",
     title: "The crew is born",
-    text: "Abdul Rafay, Ms. Noor & Bilal found The Buzz Crew.",
+    text: "Abdul Rafay, Ms. Noor Khan & Bilal Shahid found The Buzz Crew.",
   },
   {
     year: "2023",
@@ -234,8 +234,9 @@ export const journey = [
 ];
 
 export const founders = [
-  { name: "Abdul Rafay", role: "CEO & CFO" },
-  { name: "Ms. Noor", role: "COO" },
-  { name: "Bilal", role: "CMO" },
+  { name: "Abdul Rafay", role: "CEO" },
+  { name: " Noor Khan", role: "COO" },
+  { name: "Bilal Shahid ", role: "CFO" },
+  
 ];
 

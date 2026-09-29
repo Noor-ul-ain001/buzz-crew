@@ -44,11 +44,6 @@ export default function Contact() {
               </a>
             </li>
             <li>
-              <a href={contact.websiteUrl} className="hover:text-gold">
-                {contact.website}
-              </a>
-            </li>
-            <li>
               <a href={`mailto:${contact.email}`} className="hover:text-gold">
                 {contact.email}
               </a>

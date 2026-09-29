@@ -51,8 +51,8 @@ export default function Journey() {
           <ul className="mt-10 flex flex-wrap justify-center gap-10">
             {founders.map((f) => (
               <li key={f.name} className="group w-40">
-                <span className="mx-auto grid h-28 w-28 place-items-center rounded-full border border-lilac bg-mist font-script text-6xl text-violet transition-all duration-500 group-hover:-translate-y-1.5 group-hover:bg-indigo group-hover:text-paper group-hover:shadow-xl group-hover:shadow-indigo/20">
-                  {f.name.replace("Ms. ", "")[0]}
+                <span className="mx-auto grid h-28 w-28 place-items-center rounded-full border border-lilac bg-mist font-sans text-6xl text-violet transition-all duration-500 group-hover:-translate-y-1.5 group-hover:bg-indigo group-hover:text-paper group-hover:shadow-xl group-hover:shadow-indigo/20">
+                  {f.name.trim()[0]}
                 </span>
                 <p className="mt-4 font-serif text-2xl">{f.name}</p>
                 <p className="text-xs uppercase tracking-[0.16em] text-indigo/60">
