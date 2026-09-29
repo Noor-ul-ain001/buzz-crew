@@ -234,9 +234,9 @@ export const journey = [
 ];
 
 export const founders = [
-  { name: "Abdul Rafay", role: "CEO" },
-  { name: " Noor Khan", role: "COO" },
-  { name: "Bilal Shahid ", role: "CFO" },
+  { name: "Abdul Rafay", role: "FOUNDER" },
+  { name: " Noor Khan", role: "CO-FOUNDER" },
+  { name: "Bilal Shahid ", role: "CO-FOUNDER" },
   
 ];
 
